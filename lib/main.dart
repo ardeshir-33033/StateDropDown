@@ -61,11 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignedDropdown: true,
                     child: DropdownButton<String>(
                       isDense: true,
-                      hint: Text('Select State'),
+                      hint: new Text('Select State'),
                       value: _selectedState,
                       onChanged: (String newValue) {
                         setState(() {
                           _selectedState = newValue;
+                          selState = int.parse(_selectedState);
                         });
                       },
                       items: all.map(
@@ -103,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             SizedBox(height: 20,),
             Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
                   border: Border.all(width: 1, color: Colors.grey),
                   borderRadius: BorderRadius.circular(10)),
@@ -119,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           _selectedCity = newValue1;
                         });
                       },
-                      items: all.firstWhere((element) => element.id == _selectedState).cities.map((e) {
+                      items: all.firstWhere((element) => element.id == selState.toString()).cities.map((e) {
                         return DropdownMenuItem(
                           value: e.id,
                           child: Text(e.name),
