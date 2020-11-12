@@ -26,8 +26,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<StateModel> all = List<StateModel>();
-  String _selectedState = '1';
-  String _selectedCity;
+  String selectedState = '3';
+  String selectedCity ;
+  var selCity = 1;
   var selState = 3;
 
   @override
@@ -61,17 +62,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignedDropdown: true,
                     child: DropdownButton<String>(
                       isDense: true,
-                      hint: new Text('Select State'),
-                      value: _selectedState,
+                      hint: Text('Select State'),
+                      value: selectedState,
                       onChanged: (String newValue) {
                         setState(() {
-                          _selectedState = newValue;
-                          selState = int.parse(_selectedState);
+                          selectedState = newValue;
+                          selState = int.parse(selectedState);
                         });
                       },
                       items: all.map(
                         (e) {
-                          _selectedState = e.id;
+                          // selectedState = e.id;
                           return DropdownMenuItem(
                             value: e.id,
                             child: Row(
@@ -114,10 +115,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: DropdownButton<String>(
                       isDense: true,
                       hint: Text('Select City'),
-                      value: _selectedCity,
+                      value: selectedCity,
                       onChanged: (String newValue1) {
                         setState(() {
-                          _selectedCity = newValue1;
+                          selectedCity = newValue1;
                         });
                       },
                       items: all.firstWhere((element) => element.id == selState.toString()).cities.map((e) {
